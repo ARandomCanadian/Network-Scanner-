@@ -128,29 +128,29 @@ NetworkScanner/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/build
 .PHONY : NetworkScanner/fast
 
-Src/main.obj: Src/main.cpp.obj
-.PHONY : Src/main.obj
+Src/NetworkScannerApp.obj: Src/NetworkScannerApp.cpp.obj
+.PHONY : Src/NetworkScannerApp.obj
 
 # target to build an object file
-Src/main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj
-.PHONY : Src/main.cpp.obj
+Src/NetworkScannerApp.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj
+.PHONY : Src/NetworkScannerApp.cpp.obj
 
-Src/main.i: Src/main.cpp.i
-.PHONY : Src/main.i
+Src/NetworkScannerApp.i: Src/NetworkScannerApp.cpp.i
+.PHONY : Src/NetworkScannerApp.i
 
 # target to preprocess a source file
-Src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/main.cpp.i
-.PHONY : Src/main.cpp.i
+Src/NetworkScannerApp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.i
+.PHONY : Src/NetworkScannerApp.cpp.i
 
-Src/main.s: Src/main.cpp.s
-.PHONY : Src/main.s
+Src/NetworkScannerApp.s: Src/NetworkScannerApp.cpp.s
+.PHONY : Src/NetworkScannerApp.s
 
 # target to generate assembly for a file
-Src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/main.cpp.s
-.PHONY : Src/main.cpp.s
+Src/NetworkScannerApp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.s
+.PHONY : Src/NetworkScannerApp.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... NetworkScanner
-	@echo ... Src/main.obj
-	@echo ... Src/main.i
-	@echo ... Src/main.s
+	@echo ... Src/NetworkScannerApp.obj
+	@echo ... Src/NetworkScannerApp.i
+	@echo ... Src/NetworkScannerApp.s
 .PHONY : help
 
 

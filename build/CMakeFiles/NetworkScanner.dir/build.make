@@ -71,28 +71,28 @@ include CMakeFiles/NetworkScanner.dir/flags.make
 CMakeFiles/NetworkScanner.dir/codegen:
 .PHONY : CMakeFiles/NetworkScanner.dir/codegen
 
-CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj: CMakeFiles/NetworkScanner.dir/flags.make
-CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj: C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/main.cpp
-CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj: CMakeFiles/NetworkScanner.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj -MF CMakeFiles\NetworkScanner.dir\Src\main.cpp.obj.d -o CMakeFiles\NetworkScanner.dir\Src\main.cpp.obj -c C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\main.cpp
+CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj: CMakeFiles/NetworkScanner.dir/flags.make
+CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj: C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/NetworkScannerApp.cpp
+CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj: CMakeFiles/NetworkScanner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj -MF CMakeFiles\NetworkScanner.dir\Src\NetworkScannerApp.cpp.obj.d -o CMakeFiles\NetworkScanner.dir\Src\NetworkScannerApp.cpp.obj -c C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\NetworkScannerApp.cpp
 
-CMakeFiles/NetworkScanner.dir/Src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/NetworkScanner.dir/Src/main.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\main.cpp > CMakeFiles\NetworkScanner.dir\Src\main.cpp.i
+CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\NetworkScannerApp.cpp > CMakeFiles\NetworkScanner.dir\Src\NetworkScannerApp.cpp.i
 
-CMakeFiles/NetworkScanner.dir/Src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/main.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\main.cpp -o CMakeFiles\NetworkScanner.dir\Src\main.cpp.s
+CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\NetworkScannerApp.cpp -o CMakeFiles\NetworkScanner.dir\Src\NetworkScannerApp.cpp.s
 
 # Object files for target NetworkScanner
 NetworkScanner_OBJECTS = \
-"CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj"
+"CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj"
 
 # External object files for target NetworkScanner
 NetworkScanner_EXTERNAL_OBJECTS =
 
-NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj
+NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/build.make
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/linkLibs.rsp
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/objects1.rsp

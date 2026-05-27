@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Collect all source files
 file(GLOB_RECURSE SOURCES
     src/*.cpp
+    src/*.h
 )
 
 add_executable(NetworkScanner ${SOURCES})

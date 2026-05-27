@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj"
-  "CMakeFiles/NetworkScanner.dir/Src/main.cpp.obj.d"
+  "CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj"
+  "CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj.d"
   "NetworkScanner.exe"
   "NetworkScanner.exe.manifest"
   "NetworkScanner.pdb"
