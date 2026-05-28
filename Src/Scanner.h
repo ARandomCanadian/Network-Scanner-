@@ -14,23 +14,9 @@ class Scanner {
         std::vector<Host> hosts;
     
     public:
-        void scanPorts(){
-
-        }
-
-        bool pingHost(){
-
-        }
-
-        void sortResults(){
-
-        }
-
-        PortResult searchPort(int port){
-            
-        }
-
-        void recursiveScan(int port){
-
-        }
+        void scanPorts();
+        bool pingHost();
+        void sortResults();
+        PortResult searchPort(int port);
+        void recursiveScan(int port);
 };

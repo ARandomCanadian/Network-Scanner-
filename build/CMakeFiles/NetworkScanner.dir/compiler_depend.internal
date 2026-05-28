@@ -3,8 +3,6 @@
 
 CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj
  C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/NetworkScannerApp.cpp
- C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Inclu/Host.h
- C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Inclu/PortInfo.h
  C:/msys64/ucrt64/include/_mingw.h
  C:/msys64/ucrt64/include/_mingw_mac.h
  C:/msys64/ucrt64/include/_mingw_off_t.h
@@ -152,6 +150,8 @@ CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/mm_malloc.h
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stddef.h
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/syslimits.h
+ C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/Host.h
+ C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/PortInfo.h
  C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/ReportManager.h
  C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/Scanner.h
 

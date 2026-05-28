@@ -8,15 +8,7 @@ class ReportManager{
         std::string fileName;
 
     public:
-        void saveToFile(){
-
-        }
-
-        void loadFromFile(){
-
-        }
-
-        void exportReport(){
-            
-        }
+        void saveToFile();
+        void loadFromFile();
+        void exportReport();
 };
