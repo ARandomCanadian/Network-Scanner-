@@ -15,7 +15,7 @@ class Scanner {
     
     public:
         void scanPorts();
-        bool pingHost();
+        bool pingHost(const char* host);
         void sortResults();
         PortResult searchPort(int port);
         void recursiveScan(int port);
