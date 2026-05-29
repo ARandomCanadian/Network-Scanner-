@@ -11,23 +11,49 @@
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "iphlpapi.lib")
 
-void scanPorts() {
+void Scanner::scanPorts() {
 
 }
 
-bool pingHosts(const char* host) {
+bool Scanner::pingHost(const char* ipAddress) {
+    HANDLE hIcmp = IcmpCreateFile();
+
+    if (hIcmp == INVALID_HANDLE_VALUE) {
+        return false;
+    }
+
+    char sendData[] = "Ping Test";
+
+    DWORD replySize = sizeof(ICMP_ECHO_REPLY) + sizeof(sendData);
+
+    void* relayBuffer = malloc(replySize);
+
+    DWORD result = IcmpSendEcho(
+        hIcmp,
+        inet_addr(ipAddress),
+        sendData,
+        sizeof(sendData),
+        NULL,
+        relayBuffer,
+        replySize,
+        1000
+    );
+
+    free(relayBuffer);
+    IcmpCloseHandle(hIcmp);
+
+    return (result > 0);
+}
+
+void Scanner::sortResults() {
 
 }
 
-void sortResults() {
+PortResult Scanner::searchPort(int port) {
 
 }
 
-PortResult searchPorts() {
-
-}
-
-void recursiveScan(int currentIp) {
+void Scanner::recursiveScan(int currentIp) {
     if (currentIp > 254)
         return;
     
@@ -35,9 +61,11 @@ void recursiveScan(int currentIp) {
 
     std::cout << "Scanning " << ip << std::endl;
 
-    if (pingHosts(ip.c_str())) {
-        std::cout << ip << "is online \n";
+    if (Scanner::pingHost(ip.c_str())) {
+        std::cout << ip << " is online \n";
+    } else {
+        std::cout << ip << " not online\n";
     }
 
-    recursiveScan(currentIp ++);
+    recursiveScan(currentIp + 1);
 }

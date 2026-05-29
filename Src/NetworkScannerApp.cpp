@@ -6,8 +6,9 @@
 void start() {
     Scanner scanner;
     ReportManager reportManager;
-
+    std::cout << "Project Started";
     
+    scanner.recursiveScan(1);
 }
 
 void shutdown() {

@@ -85,19 +85,99 @@ CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.s"
 	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\NetworkScannerApp.cpp -o CMakeFiles\NetworkScanner.dir\Src\NetworkScannerApp.cpp.s
 
+CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj: CMakeFiles/NetworkScanner.dir/flags.make
+CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj: C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/PortResult.cpp
+CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj: CMakeFiles/NetworkScanner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj -MF CMakeFiles\NetworkScanner.dir\Src\PortResult.cpp.obj.d -o CMakeFiles\NetworkScanner.dir\Src\PortResult.cpp.obj -c C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\PortResult.cpp
+
+CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\PortResult.cpp > CMakeFiles\NetworkScanner.dir\Src\PortResult.cpp.i
+
+CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\PortResult.cpp -o CMakeFiles\NetworkScanner.dir\Src\PortResult.cpp.s
+
+CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj: CMakeFiles/NetworkScanner.dir/flags.make
+CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj: C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/ReportManager.cpp
+CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj: CMakeFiles/NetworkScanner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj -MF CMakeFiles\NetworkScanner.dir\Src\ReportManager.cpp.obj.d -o CMakeFiles\NetworkScanner.dir\Src\ReportManager.cpp.obj -c C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ReportManager.cpp
+
+CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ReportManager.cpp > CMakeFiles\NetworkScanner.dir\Src\ReportManager.cpp.i
+
+CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ReportManager.cpp -o CMakeFiles\NetworkScanner.dir\Src\ReportManager.cpp.s
+
+CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj: CMakeFiles/NetworkScanner.dir/flags.make
+CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj: C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/Scanner.cpp
+CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj: CMakeFiles/NetworkScanner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj -MF CMakeFiles\NetworkScanner.dir\Src\Scanner.cpp.obj.d -o CMakeFiles\NetworkScanner.dir\Src\Scanner.cpp.obj -c C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\Scanner.cpp
+
+CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\Scanner.cpp > CMakeFiles\NetworkScanner.dir\Src\Scanner.cpp.i
+
+CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\Scanner.cpp -o CMakeFiles\NetworkScanner.dir\Src\Scanner.cpp.s
+
+CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj: CMakeFiles/NetworkScanner.dir/flags.make
+CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj: C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/ServiceDetection.cpp
+CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj: CMakeFiles/NetworkScanner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj -MF CMakeFiles\NetworkScanner.dir\Src\ServiceDetection.cpp.obj.d -o CMakeFiles\NetworkScanner.dir\Src\ServiceDetection.cpp.obj -c C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ServiceDetection.cpp
+
+CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ServiceDetection.cpp > CMakeFiles\NetworkScanner.dir\Src\ServiceDetection.cpp.i
+
+CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ServiceDetection.cpp -o CMakeFiles\NetworkScanner.dir\Src\ServiceDetection.cpp.s
+
+CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj: CMakeFiles/NetworkScanner.dir/flags.make
+CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj: C:/Users/linde/OneDrive/Documents/C++/Tools/PenTesting/NetworkScanner/Src/SocketClient.cpp
+CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj: CMakeFiles/NetworkScanner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj -MF CMakeFiles\NetworkScanner.dir\Src\SocketClient.cpp.obj.d -o CMakeFiles\NetworkScanner.dir\Src\SocketClient.cpp.obj -c C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\SocketClient.cpp
+
+CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\SocketClient.cpp > CMakeFiles\NetworkScanner.dir\Src\SocketClient.cpp.i
+
+CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\SocketClient.cpp -o CMakeFiles\NetworkScanner.dir\Src\SocketClient.cpp.s
+
 # Object files for target NetworkScanner
 NetworkScanner_OBJECTS = \
-"CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj"
+"CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj" \
+"CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj" \
+"CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj" \
+"CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj" \
+"CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj" \
+"CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj"
 
 # External object files for target NetworkScanner
 NetworkScanner_EXTERNAL_OBJECTS =
 
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj
+NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj
+NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj
+NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj
+NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj
+NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/build.make
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/linkLibs.rsp
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/objects1.rsp
 NetworkScanner.exe: CMakeFiles/NetworkScanner.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable NetworkScanner.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable NetworkScanner.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\NetworkScanner.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

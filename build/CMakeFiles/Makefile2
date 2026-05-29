@@ -84,12 +84,12 @@ clean: CMakeFiles/NetworkScanner.dir/clean
 CMakeFiles/NetworkScanner.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=1,2 "Built target NetworkScanner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target NetworkScanner"
 .PHONY : CMakeFiles/NetworkScanner.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/NetworkScanner.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/NetworkScanner.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles 0
 .PHONY : CMakeFiles/NetworkScanner.dir/rule
@@ -101,7 +101,7 @@ NetworkScanner: CMakeFiles/NetworkScanner.dir/rule
 # codegen rule for target.
 CMakeFiles/NetworkScanner.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=1,2 "Finished codegen for target NetworkScanner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\build\CMakeFiles --progress-num=1,2,3,4,5,6,7 "Finished codegen for target NetworkScanner"
 .PHONY : CMakeFiles/NetworkScanner.dir/codegen
 
 # clean rule for target.

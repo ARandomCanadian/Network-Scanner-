@@ -152,6 +152,126 @@ Src/NetworkScannerApp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.s
 .PHONY : Src/NetworkScannerApp.cpp.s
 
+Src/PortResult.obj: Src/PortResult.cpp.obj
+.PHONY : Src/PortResult.obj
+
+# target to build an object file
+Src/PortResult.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj
+.PHONY : Src/PortResult.cpp.obj
+
+Src/PortResult.i: Src/PortResult.cpp.i
+.PHONY : Src/PortResult.i
+
+# target to preprocess a source file
+Src/PortResult.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.i
+.PHONY : Src/PortResult.cpp.i
+
+Src/PortResult.s: Src/PortResult.cpp.s
+.PHONY : Src/PortResult.s
+
+# target to generate assembly for a file
+Src/PortResult.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.s
+.PHONY : Src/PortResult.cpp.s
+
+Src/ReportManager.obj: Src/ReportManager.cpp.obj
+.PHONY : Src/ReportManager.obj
+
+# target to build an object file
+Src/ReportManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj
+.PHONY : Src/ReportManager.cpp.obj
+
+Src/ReportManager.i: Src/ReportManager.cpp.i
+.PHONY : Src/ReportManager.i
+
+# target to preprocess a source file
+Src/ReportManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.i
+.PHONY : Src/ReportManager.cpp.i
+
+Src/ReportManager.s: Src/ReportManager.cpp.s
+.PHONY : Src/ReportManager.s
+
+# target to generate assembly for a file
+Src/ReportManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.s
+.PHONY : Src/ReportManager.cpp.s
+
+Src/Scanner.obj: Src/Scanner.cpp.obj
+.PHONY : Src/Scanner.obj
+
+# target to build an object file
+Src/Scanner.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj
+.PHONY : Src/Scanner.cpp.obj
+
+Src/Scanner.i: Src/Scanner.cpp.i
+.PHONY : Src/Scanner.i
+
+# target to preprocess a source file
+Src/Scanner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.i
+.PHONY : Src/Scanner.cpp.i
+
+Src/Scanner.s: Src/Scanner.cpp.s
+.PHONY : Src/Scanner.s
+
+# target to generate assembly for a file
+Src/Scanner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.s
+.PHONY : Src/Scanner.cpp.s
+
+Src/ServiceDetection.obj: Src/ServiceDetection.cpp.obj
+.PHONY : Src/ServiceDetection.obj
+
+# target to build an object file
+Src/ServiceDetection.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.obj
+.PHONY : Src/ServiceDetection.cpp.obj
+
+Src/ServiceDetection.i: Src/ServiceDetection.cpp.i
+.PHONY : Src/ServiceDetection.i
+
+# target to preprocess a source file
+Src/ServiceDetection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.i
+.PHONY : Src/ServiceDetection.cpp.i
+
+Src/ServiceDetection.s: Src/ServiceDetection.cpp.s
+.PHONY : Src/ServiceDetection.s
+
+# target to generate assembly for a file
+Src/ServiceDetection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/ServiceDetection.cpp.s
+.PHONY : Src/ServiceDetection.cpp.s
+
+Src/SocketClient.obj: Src/SocketClient.cpp.obj
+.PHONY : Src/SocketClient.obj
+
+# target to build an object file
+Src/SocketClient.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.obj
+.PHONY : Src/SocketClient.cpp.obj
+
+Src/SocketClient.i: Src/SocketClient.cpp.i
+.PHONY : Src/SocketClient.i
+
+# target to preprocess a source file
+Src/SocketClient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.i
+.PHONY : Src/SocketClient.cpp.i
+
+Src/SocketClient.s: Src/SocketClient.cpp.s
+.PHONY : Src/SocketClient.s
+
+# target to generate assembly for a file
+Src/SocketClient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/SocketClient.cpp.s
+.PHONY : Src/SocketClient.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -164,6 +284,21 @@ help:
 	@echo ... Src/NetworkScannerApp.obj
 	@echo ... Src/NetworkScannerApp.i
 	@echo ... Src/NetworkScannerApp.s
+	@echo ... Src/PortResult.obj
+	@echo ... Src/PortResult.i
+	@echo ... Src/PortResult.s
+	@echo ... Src/ReportManager.obj
+	@echo ... Src/ReportManager.i
+	@echo ... Src/ReportManager.s
+	@echo ... Src/Scanner.obj
+	@echo ... Src/Scanner.i
+	@echo ... Src/Scanner.s
+	@echo ... Src/ServiceDetection.obj
+	@echo ... Src/ServiceDetection.i
+	@echo ... Src/ServiceDetection.s
+	@echo ... Src/SocketClient.obj
+	@echo ... Src/SocketClient.i
+	@echo ... Src/SocketClient.s
 .PHONY : help
 
 
