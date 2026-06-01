@@ -7,11 +7,25 @@
 #include "Scanner.h"
 #include "Host.h"
 #include "PortResult.h"
+#include "SocketClient.h"
 
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "iphlpapi.lib")
 
 void Scanner::scanPorts() {
+    std::cout << "Starting SockClient\n";
+
+    SocketClient sockClient;
+
+    std::cout << "Starting Loop\n";
+
+    for (Host h : hosts) {
+        std::cout << "connecting to port 24 on " << h.ip << "\n";
+        sockClient.connectToPort(h.ip, 24);
+    }
+}
+
+PortResult Scanner::searchPort(int port) {
 
 }
 
@@ -49,19 +63,13 @@ void Scanner::sortResults() {
 
 }
 
-PortResult Scanner::searchPort(int port) {
-
-}
-
 void Scanner::scanRange(int startIp, int endIp) {
     for (int currentIp = startIp; currentIp <= endIp; currentIp++)
     {
         std::string ip = "192.168.56." + std::to_string(currentIp);
 
         if (pingHost(ip.c_str())){
-            Host host;
-            host.ip = ip;
-            host.online = true;
+            Host host(ip, true);
 
             {
                 std::lock_guard<std::mutex> lock(hostMutex);
@@ -69,6 +77,7 @@ void Scanner::scanRange(int startIp, int endIp) {
             }
 
             std::cout << ip << " is online\n";
+
         }
     }
 }
