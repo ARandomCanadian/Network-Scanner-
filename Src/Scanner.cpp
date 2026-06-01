@@ -36,7 +36,7 @@ bool Scanner::pingHost(const char* ipAddress) {
         NULL,
         relayBuffer,
         replySize,
-        1000
+        50
     );
 
     free(relayBuffer);
@@ -53,19 +53,65 @@ PortResult Scanner::searchPort(int port) {
 
 }
 
-void Scanner::recursiveScan(int currentIp) {
-    if (currentIp > 254)
-        return;
-    
-    std::string ip = "192.168.56." + std::to_string(currentIp);
+void Scanner::scanRange(int startIp, int endIp) {
+    for (int currentIp = startIp; currentIp <= endIp; currentIp++)
+    {
+        std::string ip = "192.168.56." + std::to_string(currentIp);
 
-    std::cout << "Scanning " << ip << std::endl;
+        if (pingHost(ip.c_str())){
+            Host host;
+            host.ip = ip;
+            host.online = true;
 
-    if (Scanner::pingHost(ip.c_str())) {
-        std::cout << ip << " is online \n";
-    } else {
-        std::cout << ip << " not online\n";
+            {
+                std::lock_guard<std::mutex> lock(hostMutex);
+                hosts.push_back(host);
+            }
+
+            std::cout << ip << " is online\n";
+        }
+    }
+}
+
+void Scanner::thrededScan() {
+    const int firstIp = 1;
+    const int lastIp = 255;
+
+    unsigned int threadCount = std::thread::hardware_concurrency();
+
+    if (threadCount == 0) {
+        threadCount = 8;
     }
 
-    recursiveScan(currentIp + 1);
+    std::vector<std::thread> threads;
+
+    int totalIps = lastIp - firstIp + 1;
+    int chunkSize = totalIps / threadCount;
+
+    int start = firstIp;
+
+    for (unsigned int i = 0; i < threadCount; i++) {
+        int end;
+
+        if (i == threadCount - 1) {
+            end = lastIp;
+        } else {
+            end = start + chunkSize - 1;
+        }
+
+        threads.emplace_back(
+            &Scanner::scanRange,
+            this,
+            start,
+            end
+        );
+
+        start = end + 1;
+    }
+
+    for (auto& thread : threads) {
+        thread.join();
+    }
+
+    std::cout << "\nScan Complete.\n";
 }
