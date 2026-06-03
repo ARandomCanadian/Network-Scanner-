@@ -2,14 +2,14 @@
 
 #include "ReportManager.h"
 
-void saveToFile() {
+void ReportManager::saveToFile() {
 
 }
 
-void loadFromFile() {
+void ReportManager::loadFromFile() {
 
 }
 
-void exportReport() {
+void ReportManager::exportReport() {
     
 }

@@ -6,27 +6,31 @@
 
 #include "Scanner.h"
 #include "Host.h"
-#include "PortResult.h"
 #include "SocketClient.h"
 
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "iphlpapi.lib")
 
 void Scanner::scanPorts() {
-    std::cout << "Starting SockClient\n";
-
     SocketClient sockClient;
 
-    std::cout << "Starting Loop\n";
+    for (Host& host : hosts) {
+        if (!host.online)
+            continue;
 
-    for (Host h : hosts) {
-        std::cout << "connecting to port 24 on " << h.ip << "\n";
-        sockClient.connectToPort(h.ip, 24);
+        for (int i = 1; i <= 1024; i++) {
+            PortInfo result = searchPort(host.ip, sockClient, i);
+
+            if (result.state == PortInfo::PortState::OPEN)
+                host.openPorts.push_back(result);
+        }
     }
 }
 
-PortResult Scanner::searchPort(int port) {
+PortInfo Scanner::searchPort(std::string ip, SocketClient& sockClient, int port) {
+    PortInfo::PortState state = sockClient.connectToPort(ip, port);
 
+    return PortInfo(state, port);
 }
 
 bool Scanner::pingHost(const char* ipAddress) {
@@ -63,7 +67,7 @@ void Scanner::sortResults() {
 
 }
 
-void Scanner::scanRange(int startIp, int endIp) {
+void Scanner::discoverRange(int startIp, int endIp) {
     for (int currentIp = startIp; currentIp <= endIp; currentIp++)
     {
         std::string ip = "192.168.56." + std::to_string(currentIp);
@@ -82,7 +86,7 @@ void Scanner::scanRange(int startIp, int endIp) {
     }
 }
 
-void Scanner::thrededScan() {
+void Scanner::discoverHostsThreaded() {
     const int firstIp = 1;
     const int lastIp = 255;
 
@@ -109,7 +113,7 @@ void Scanner::thrededScan() {
         }
 
         threads.emplace_back(
-            &Scanner::scanRange,
+            &Scanner::discoverRange,
             this,
             start,
             end
@@ -123,4 +127,8 @@ void Scanner::thrededScan() {
     }
 
     std::cout << "\nScan Complete.\n";
+}
+
+const std::vector<Host>& Scanner::getHost() const {
+    return hosts;
 }

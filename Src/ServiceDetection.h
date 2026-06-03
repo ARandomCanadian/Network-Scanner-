@@ -3,9 +3,10 @@
 
 class ServiceDetection{
     private:
-        std::map <int, std::string> knownService;
+        std::map<int, std::string> knownServices;
 
     public: 
-        std::string detectService();
-        void loadService();
+        ServiceDetection();
+
+        std::string getServiceName(int port);
 };

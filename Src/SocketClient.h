@@ -5,10 +5,12 @@
 #include <windows.h>
 #include <cstdint>
 
+#include "PortInfo.h"
+
 class SocketClient{
     private:
 
     public:
-        bool connectToPort(std::string ip, uint16_t port);
+        PortInfo::PortState connectToPort(std::string ip, uint16_t port);
         void closeConnection();
 };

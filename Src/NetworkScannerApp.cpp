@@ -16,9 +16,9 @@ void start() {
 
     std::cout << "Project Started\n";
     
-    scanner.thrededScan();
+    scanner.discoverHostsThreaded();
 
-    std::cout <<"starting scan ports";
+    std::cout <<"starting scan ports\n";
 
     scanner.scanPorts();
 

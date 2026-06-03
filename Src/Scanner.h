@@ -6,7 +6,6 @@
 #include <mutex>
 
 #include "Host.h"
-#include "PortResult.h"
 
 class Scanner {
     private:
@@ -20,7 +19,8 @@ class Scanner {
         void scanPorts();
         bool pingHost(const char* host);
         void sortResults();
-        PortResult searchPort(int port);
-        void scanRange(int startIP, int endIP);
-        void thrededScan();
+        PortInfo searchPort(std::string ip, SocketClient& sockClient, int port);
+        void discoverRange(int startIP, int endIP);
+        void discoverHostsThreaded();
+        const std::vector<Host>& getHost() const;
 };

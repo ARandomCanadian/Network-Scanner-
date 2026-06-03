@@ -5,27 +5,48 @@
 #include <ws2tcpip.h>
 
 #include "SocketClient.h"
+#include "PortInfo.h"
 
-bool SocketClient::connectToPort(std::string ip, uint16_t port){
-    std::cout << "connecting\n";
+PortInfo::PortState SocketClient::connectToPort(std::string ip, uint16_t port){
     SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     
     if (sock == INVALID_SOCKET) {
-        std::cout << "failed\n";
-        return false;
+        return PortInfo::PortState::ERR;
     }
 
     sockaddr_in target{};
     target.sin_family = AF_INET;
     target.sin_port = htons(port);
 
-    inet_pton(AF_INET, ip.c_str(), &target.sin_addr);
+    if (inet_pton(AF_INET, ip.c_str(), &target.sin_addr) != 1) {
+        closesocket(sock);
+        return PortInfo::PortState::ERR;
+    }
 
     int result = connect(sock, (sockaddr*)&target, sizeof(target));
 
-    std::cout << "connected\n";
+    if (result == 0) {
+        closesocket(sock);
+        return PortInfo::PortState::OPEN;
+    }
+
+    int error = WSAGetLastError();
 
     closesocket(sock);
 
-    return result == 0;
+    switch (error){
+        case WSAECONNREFUSED:
+            return PortInfo::PortState::CLOSED;
+        
+        case WSAETIMEDOUT:
+            return PortInfo::PortState::FILTERED;
+
+        case WSAEHOSTDOWN:
+        case WSAENETUNREACH:
+        case WSAEHOSTUNREACH:
+            return PortInfo::PortState::UNREACHABLE;
+        
+        default:
+            return PortInfo::PortState::ERR;
+    }
 }
