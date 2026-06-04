@@ -6,6 +6,7 @@
 #include <mutex>
 
 #include "Host.h"
+#include "SocketClient.h"
 
 class Scanner {
     private:

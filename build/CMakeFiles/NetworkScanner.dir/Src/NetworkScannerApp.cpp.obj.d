@@ -358,7 +358,7 @@ CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj: \
  C:/msys64/ucrt64/include/c++/13.2.0/bits/unique_lock.h \
  C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\Host.h \
  C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\PortInfo.h \
- C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\PortResult.h \
+ C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\SocketClient.h \
  C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ReportManager.h \
  C:/msys64/ucrt64/include/c++/13.2.0/fstream \
  C:/msys64/ucrt64/include/c++/13.2.0/bits/codecvt.h \

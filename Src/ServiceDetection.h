@@ -7,6 +7,6 @@ class ServiceDetection{
 
     public: 
         ServiceDetection();
-
-        std::string getServiceName(int port);
+        std::string grabBanner(const std::string& ip, int port);
+        std::string detectService(const std::string banner, int port);
 };

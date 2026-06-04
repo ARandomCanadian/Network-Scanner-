@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 struct PortInfo
@@ -12,7 +14,8 @@ struct PortInfo
 
     int port;
     std::string service;
+    std::string banner;
     PortState state;
 
-    PortInfo(PortState portState, int port) : state(portState), port(port) {};
+    PortInfo(PortState portState, int port) :  port(port), state(portState) {};
 };

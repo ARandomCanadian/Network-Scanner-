@@ -367,5 +367,12 @@ CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj: \
  C:/msys64/ucrt64/include/c++/13.2.0/bits/unique_lock.h \
  C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\Host.h \
  C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\PortInfo.h \
- C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\PortResult.h \
- C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\SocketClient.h
+ C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\SocketClient.h \
+ C:\Users\linde\OneDrive\Documents\C++\Tools\PenTesting\NetworkScanner\Src\ServiceDetection.h \
+ C:/msys64/ucrt64/include/c++/13.2.0/map \
+ C:/msys64/ucrt64/include/c++/13.2.0/bits/stl_tree.h \
+ C:/msys64/ucrt64/include/c++/13.2.0/ext/aligned_buffer.h \
+ C:/msys64/ucrt64/include/c++/13.2.0/bits/node_handle.h \
+ C:/msys64/ucrt64/include/c++/13.2.0/bits/stl_map.h \
+ C:/msys64/ucrt64/include/c++/13.2.0/bits/stl_multimap.h \
+ C:/msys64/ucrt64/include/c++/13.2.0/bits/erase_if.h

@@ -152,30 +152,6 @@ Src/NetworkScannerApp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.s
 .PHONY : Src/NetworkScannerApp.cpp.s
 
-Src/PortResult.obj: Src/PortResult.cpp.obj
-.PHONY : Src/PortResult.obj
-
-# target to build an object file
-Src/PortResult.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj
-.PHONY : Src/PortResult.cpp.obj
-
-Src/PortResult.i: Src/PortResult.cpp.i
-.PHONY : Src/PortResult.i
-
-# target to preprocess a source file
-Src/PortResult.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.i
-.PHONY : Src/PortResult.cpp.i
-
-Src/PortResult.s: Src/PortResult.cpp.s
-.PHONY : Src/PortResult.s
-
-# target to generate assembly for a file
-Src/PortResult.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NetworkScanner.dir\build.make CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.s
-.PHONY : Src/PortResult.cpp.s
-
 Src/ReportManager.obj: Src/ReportManager.cpp.obj
 .PHONY : Src/ReportManager.obj
 
@@ -284,9 +260,6 @@ help:
 	@echo ... Src/NetworkScannerApp.obj
 	@echo ... Src/NetworkScannerApp.i
 	@echo ... Src/NetworkScannerApp.s
-	@echo ... Src/PortResult.obj
-	@echo ... Src/PortResult.i
-	@echo ... Src/PortResult.s
 	@echo ... Src/ReportManager.obj
 	@echo ... Src/ReportManager.i
 	@echo ... Src/ReportManager.s

@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj"
   "CMakeFiles/NetworkScanner.dir/Src/NetworkScannerApp.cpp.obj.d"
-  "CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj"
-  "CMakeFiles/NetworkScanner.dir/Src/PortResult.cpp.obj.d"
   "CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj"
   "CMakeFiles/NetworkScanner.dir/Src/ReportManager.cpp.obj.d"
   "CMakeFiles/NetworkScanner.dir/Src/Scanner.cpp.obj"

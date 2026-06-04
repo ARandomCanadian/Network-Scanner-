@@ -7,12 +7,14 @@
 #include "Scanner.h"
 #include "Host.h"
 #include "SocketClient.h"
+#include "ServiceDetection.h"
 
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "iphlpapi.lib")
 
 void Scanner::scanPorts() {
     SocketClient sockClient;
+    ServiceDetection servDetect;
 
     for (Host& host : hosts) {
         if (!host.online)
@@ -21,8 +23,13 @@ void Scanner::scanPorts() {
         for (int i = 1; i <= 1024; i++) {
             PortInfo result = searchPort(host.ip, sockClient, i);
 
-            if (result.state == PortInfo::PortState::OPEN)
+            if (result.state == PortInfo::PortState::OPEN){
+                result.banner = servDetect.grabBanner(host.ip, result.port);
+
+                result.service = servDetect.detectService(result.banner, result.port);
+
                 host.openPorts.push_back(result);
+            }
         }
     }
 }
