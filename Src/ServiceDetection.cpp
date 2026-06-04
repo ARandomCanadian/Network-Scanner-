@@ -3,9 +3,7 @@
 
 #include "ServiceDetection.h"
 
-ServiceDetection::ServiceDetection() {
-
-}
+ServiceDetection::ServiceDetection() {}
 
 std::string ServiceDetection::grabBanner(const std::string& ip, int port){
     SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);

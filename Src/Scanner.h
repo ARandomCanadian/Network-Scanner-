@@ -21,8 +21,8 @@ class Scanner {
         bool pingHost(const char* host);
         void sortResults();
         PortInfo searchPort(std::string ip, SocketClient& sockClient, int port);
-        void discoverRange(int startIP, int endIP);
-        void discoverHostsThreaded();
+        void discoverRange(std::string subnet, int startIP, int endIP);
+        void discoverHostsThreaded(std::string subnet);
         std::vector<Host>& getHost();
         const std::vector<Host>& getHost() const;
 };

@@ -93,10 +93,10 @@ void Scanner::sortResults() {
 
 }
 
-void Scanner::discoverRange(int startIp, int endIp) {
+void Scanner::discoverRange(std::string subnet, int startIp, int endIp) {
     for (int currentIp = startIp; currentIp <= endIp; currentIp++)
     {
-        std::string ip = "192.168.56." + std::to_string(currentIp);
+        std::string ip = subnet + std::to_string(currentIp);
 
         if (pingHost(ip.c_str())){
             Host host(ip, true);
@@ -112,7 +112,7 @@ void Scanner::discoverRange(int startIp, int endIp) {
     }
 }
 
-void Scanner::discoverHostsThreaded() {
+void Scanner::discoverHostsThreaded(std::string subnet) {
     const int firstIp = 1;
     const int lastIp = 255;
 
@@ -141,6 +141,7 @@ void Scanner::discoverHostsThreaded() {
         threads.emplace_back(
             &Scanner::discoverRange,
             this,
+            subnet,
             start,
             end
         );
