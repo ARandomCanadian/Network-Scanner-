@@ -12,26 +12,45 @@
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "iphlpapi.lib")
 
-void Scanner::scanPorts() {
-    SocketClient sockClient;
-    ServiceDetection servDetect;
+void Scanner::scanPorts(Host& host) {
+    std::mutex portMutex;
+    std::vector<std::thread> threads;
 
-    for (Host& host : hosts) {
-        if (!host.online)
-            continue;
+    const int threadcount = 64;
 
-        for (int i = 1; i <= 1024; i++) {
-            PortInfo result = searchPort(host.ip, sockClient, i);
+    int portsPerThread = 1024/threadcount;
 
-            if (result.state == PortInfo::PortState::OPEN){
-                result.banner = servDetect.grabBanner(host.ip, result.port);
+    for (int t = 0; t< threadcount; t++) {
+        int startPort = t * portsPerThread + 1;
 
-                result.service = servDetect.detectService(result.banner, result.port);
+        int endPort = (t == threadcount - 1) ? 1024 : startPort + portsPerThread - 1;
 
-                host.openPorts.push_back(result);
-            }
+        threads.emplace_back(
+            [&, startPort, endPort]() {
+                ServiceDetection servDetect;
+
+                for (int port = startPort; port <= endPort; port++) {
+                    SocketClient sockClient;
+                    PortInfo result = searchPort(host.ip, sockClient, port);
+
+                    if (result.state == PortInfo::PortState::OPEN) {
+                        result.banner = servDetect.grabBanner(host.ip, port);
+
+                        result.service = servDetect.detectService(result.banner, port);
+
+                        std::lock_guard<std::mutex> lock(portMutex);
+
+                        host.openPorts.push_back(result);
+                    }
+                }
+            });
+    }
+    for (auto& t : threads) {
+        if (t.joinable()) {
+            t.join();
         }
     }
+
 }
 
 PortInfo Scanner::searchPort(std::string ip, SocketClient& sockClient, int port) {
@@ -134,6 +153,10 @@ void Scanner::discoverHostsThreaded() {
     }
 
     std::cout << "\nScan Complete.\n";
+}
+
+std::vector<Host>& Scanner::getHost() {
+    return hosts;
 }
 
 const std::vector<Host>& Scanner::getHost() const {

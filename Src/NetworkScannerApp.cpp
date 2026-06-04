@@ -22,13 +22,15 @@ void start() {
 
     std::cout <<"starting scan ports\n";
 
-    scanner.scanPorts();
+    for (Host& host : scanner.getHost()) {
+        scanner.scanPorts(host);
+    }
 
     for (Host hosts : scanner.getHost()) {
         std::cout << hosts.ip << " : " << hosts.hostname << " : " << hosts.online << "\n";
 
         for (PortInfo port : hosts.openPorts) {
-            std::cout << static_cast<int>(port.state) << " : " << port.port << " : " << port.banner << " : " << port.service;
+            std::cout << static_cast<int>(port.state) << " : " << port.port << " : " << port.banner << " : " << port.service << "\n";
         }
     }
 

@@ -17,11 +17,12 @@ class Scanner {
         std::mutex hostMutex;
     
     public:
-        void scanPorts();
+        void scanPorts(Host& host);
         bool pingHost(const char* host);
         void sortResults();
         PortInfo searchPort(std::string ip, SocketClient& sockClient, int port);
         void discoverRange(int startIP, int endIP);
         void discoverHostsThreaded();
+        std::vector<Host>& getHost();
         const std::vector<Host>& getHost() const;
 };
