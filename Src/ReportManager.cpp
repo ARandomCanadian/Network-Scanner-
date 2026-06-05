@@ -44,7 +44,7 @@ void ReportManager::saveToFile(const std::vector<Host>& hosts) {
         return;
     }
 
-    outFile << root.dump(4);
+    outFile << root.dump(4, ' ', false, nlohmann::json::error_handler_t::replace);
     outFile.close();
 
     std::cout << "Saved to " << fileName << '\n';

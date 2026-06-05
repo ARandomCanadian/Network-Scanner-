@@ -89,10 +89,6 @@ bool Scanner::pingHost(const char* ipAddress) {
     return (result > 0);
 }
 
-void Scanner::sortResults() {
-
-}
-
 void Scanner::discoverRange(std::string subnet, int startIp, int endIp) {
     for (int currentIp = startIp; currentIp <= endIp; currentIp++)
     {
@@ -162,4 +158,37 @@ std::vector<Host>& Scanner::getHost() {
 
 const std::vector<Host>& Scanner::getHost() const {
     return hosts;
+}
+
+void Scanner::sortResults() {
+    if (hosts.empty())
+        return;
+    
+    quickSort(hosts, 0, hosts.size() - 1);
+}
+
+void Scanner::quickSort(std::vector<Host>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi -1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int Scanner::partition(std::vector<Host>& arr, int low, int high) {
+    int pivot = arr[high].openPorts.size();
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        int current = arr[j].openPorts.size();
+
+        if (current > pivot) {
+            i++;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+
+    std::swap(arr[i + 1], arr[high]);
+    return i + 1;
 }

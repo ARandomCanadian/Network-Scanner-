@@ -25,4 +25,6 @@ class Scanner {
         void discoverHostsThreaded(std::string subnet);
         std::vector<Host>& getHost();
         const std::vector<Host>& getHost() const;
+        static void quickSort(std::vector<Host>& arr, int low, int high);
+        static int partition(std::vector<Host>& arr, int low, int high);
 };

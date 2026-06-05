@@ -31,6 +31,7 @@ int main() {
         std::cout << "3: Print Network Information\n";
         std::cout << "4: Output To JSON\n";
         std::cout << "5: Input From JSON\n";
+        std::cout << "6: Sort By Most Open Ports\n";
 
         std::cin >> userIn;
 
@@ -86,6 +87,12 @@ int main() {
                 std::cout << "Loading from file\n";
                 scanner.getHost() = reportManager.loadFromFile();
                 std::cout << "Loaded from file\n";
+                break;
+            
+            case 6:
+                std::cout << "Sorting by most open ports\n";
+                scanner.sortResults();
+                std::cout << "Sorted\n";
                 break;
 
             default:
