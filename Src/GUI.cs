@@ -7,11 +7,13 @@ using System.Linq;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
+// Matches the top-level JSON object saved by the C++ ReportManager.
 public class ScanReport
 {
     public List<HostRecord> hosts { get; set; }
 }
 
+// Represents one host loaded from scan_results.json.
 public class HostRecord
 {
     public string ip { get; set; }
@@ -20,6 +22,7 @@ public class HostRecord
     public List<PortRecord> openPorts { get; set; }
 }
 
+// Represents one open port loaded from scan_results.json.
 public class PortRecord
 {
     public int port { get; set; }
@@ -28,8 +31,11 @@ public class PortRecord
     public string state { get; set; }
 }
 
+// Main WinForms window for the scanner GUI.
+// This GUI stays separate from the C++ scanner and launches NetworkScanner.exe when scanning.
 public class ScannerGui : Form
 {
+    // Controls used for user input, buttons, result tables, logs, and status messages.
     private readonly TextBox subnetTextBox = new TextBox();
     private readonly TextBox scannerExeTextBox = new TextBox();
     private readonly Button browseButton = new Button();
@@ -44,8 +50,10 @@ public class ScannerGui : Form
     private readonly TextBox logBox = new TextBox();
     private readonly Label statusLabel = new Label();
 
+    // Stores the most recently loaded scan report so sorting/searching can use it.
     private ScanReport currentReport = new ScanReport { hosts = new List<HostRecord>() };
 
+    // Sets up the window, builds the controls, connects events, and finds the scanner EXE.
     public ScannerGui()
     {
         Text = "Educational Network Scanner GUI";
@@ -59,8 +67,10 @@ public class ScannerGui : Form
         scannerExeTextBox.Text = FindDefaultScannerExePath();
     }
 
+    // Creates the GUI layout entirely in code instead of using the Visual Studio Designer.
     private void BuildLayout()
     {
+        // Main layout divides the form into controls, host results, port results, log, and status.
         var main = new TableLayoutPanel();
         main.Dock = DockStyle.Fill;
         main.RowCount = 5;
@@ -73,6 +83,7 @@ public class ScannerGui : Form
         main.RowStyles.Add(new RowStyle(SizeType.Absolute, 28));
         Controls.Add(main);
 
+        // Top layout contains the subnet input, scanner EXE path, and action buttons.
         var top = new TableLayoutPanel();
         top.Dock = DockStyle.Fill;
         top.ColumnCount = 7;
@@ -126,6 +137,7 @@ public class ScannerGui : Form
         searchButton.Dock = DockStyle.Fill;
         top.Controls.Add(searchButton, 5, 1);
 
+        // Host grid shows discovered devices and how many open ports each has.
         ConfigureGrid(hostsGrid);
         hostsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         hostsGrid.MultiSelect = false;
@@ -136,6 +148,7 @@ public class ScannerGui : Form
         hostsGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Open Ports", Name = "OpenPortCount", Width = 100 });
         main.Controls.Add(hostsGrid, 0, 1);
 
+        // Port grid shows the open ports for the selected host.
         ConfigureGrid(portsGrid);
         portsGrid.AutoGenerateColumns = false;
         portsGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Port", DataPropertyName = "port", Width = 80 });
@@ -144,6 +157,7 @@ public class ScannerGui : Form
         portsGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Banner", DataPropertyName = "banner", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
         main.Controls.Add(portsGrid, 0, 2);
 
+        // Log box displays output from the C++ scanner process.
         logBox.Dock = DockStyle.Fill;
         logBox.Multiline = true;
         logBox.ScrollBars = ScrollBars.Vertical;
@@ -156,6 +170,7 @@ public class ScannerGui : Form
         main.Controls.Add(statusLabel, 0, 4);
     }
 
+    // Applies the same read-only settings to both result grids.
     private void ConfigureGrid(DataGridView grid)
     {
         grid.Dock = DockStyle.Fill;
@@ -166,6 +181,7 @@ public class ScannerGui : Form
         grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
     }
 
+    // Connects button clicks and table selection changes to their methods.
     private void WireEvents()
     {
         browseButton.Click += BrowseButton_Click;
@@ -177,6 +193,7 @@ public class ScannerGui : Form
         hostsGrid.CellFormatting += HostsGrid_CellFormatting;
     }
 
+    // Searches common folders for NetworkScanner.exe so the user may not need to browse manually.
     private string FindDefaultScannerExePath()
     {
         string guiFolder = AppDomain.CurrentDomain.BaseDirectory;
@@ -203,6 +220,7 @@ public class ScannerGui : Form
         return Path.Combine(guiFolder, "NetworkScanner.exe");
     }
 
+    // Opens a file picker so the user can select the C++ scanner executable.
     private void BrowseButton_Click(object sender, EventArgs e)
     {
         using (var dialog = new OpenFileDialog())
@@ -215,6 +233,8 @@ public class ScannerGui : Form
         }
     }
 
+    // Launches NetworkScanner.exe in GUI scan mode and waits for it to finish.
+    // Running this asynchronously keeps the GUI from freezing during the scan.
     private async System.Threading.Tasks.Task RunScanAsync()
     {
         string scannerPath = scannerExeTextBox.Text.Trim();
@@ -232,6 +252,7 @@ public class ScannerGui : Form
             return;
         }
 
+        // Disable buttons while scanning so the user cannot start multiple scans at once.
         SetBusy(true);
         logBox.Clear();
         AppendLog("Starting GUI scan...\r\n");
@@ -240,6 +261,7 @@ public class ScannerGui : Form
         {
             string workingDirectory = Path.GetDirectoryName(scannerPath);
 
+            // ProcessStartInfo controls how the GUI starts the C++ scanner EXE.
             var startInfo = new ProcessStartInfo();
             startInfo.FileName = scannerPath;
             startInfo.Arguments = "--gui-scan \"" + subnet + "\"";
@@ -252,6 +274,7 @@ public class ScannerGui : Form
             using (var process = new Process())
             {
                 process.StartInfo = startInfo;
+                // Send console output from the scanner into the GUI log box.
                 process.OutputDataReceived += (sender, e) => { if (e.Data != null) AppendLog(e.Data + "\r\n"); };
                 process.ErrorDataReceived += (sender, e) => { if (e.Data != null) AppendLog("ERROR: " + e.Data + "\r\n"); };
 
@@ -267,6 +290,7 @@ public class ScannerGui : Form
                 }
             }
 
+            // After the scanner exits, load the JSON report it created.
             LoadReport(Path.Combine(workingDirectory, "scan_results.json"));
             statusLabel.Text = "Scan complete";
         }
@@ -280,6 +304,7 @@ public class ScannerGui : Form
         }
     }
 
+    // Loads scan_results.json from beside the scanner EXE, or lets the user choose it manually.
     private void LoadReportFromDefaultLocation()
     {
         string scannerPath = scannerExeTextBox.Text.Trim();
@@ -303,9 +328,11 @@ public class ScannerGui : Form
         LoadReport(reportPath);
     }
 
+    // Reads JSON from disk and converts it into C# objects for the GUI tables.
     private void LoadReport(string path)
     {
         string json = File.ReadAllText(path);
+        // JavaScriptSerializer is used because it is included with the .NET Framework compiler.
         var serializer = new JavaScriptSerializer();
         serializer.MaxJsonLength = int.MaxValue;
         currentReport = serializer.Deserialize<ScanReport>(json) ?? new ScanReport();
@@ -324,6 +351,7 @@ public class ScannerGui : Form
         statusLabel.Text = "Loaded " + currentReport.hosts.Count + " host(s)";
     }
 
+    // Refreshes the host grid after loading or sorting results.
     private void BindHosts()
     {
         hostsGrid.DataSource = null;
@@ -335,6 +363,7 @@ public class ScannerGui : Form
         ShowSelectedHostPorts();
     }
 
+    // Shows the ports belonging to the currently selected host.
     private void ShowSelectedHostPorts()
     {
         HostRecord host = GetSelectedHost();
@@ -347,6 +376,7 @@ public class ScannerGui : Form
         portsGrid.DataSource = host.openPorts.OrderBy(port => port.port).ToList();
     }
 
+    // Gets the HostRecord attached to the selected grid row.
     private HostRecord GetSelectedHost()
     {
         if (hostsGrid.CurrentRow == null)
@@ -355,6 +385,7 @@ public class ScannerGui : Form
         return hostsGrid.CurrentRow.DataBoundItem as HostRecord;
     }
 
+    // Sorts the loaded hosts by most open ports for easier analysis.
     private void SortHostsByOpenPorts()
     {
         if (currentReport.hosts == null)
@@ -368,6 +399,7 @@ public class ScannerGui : Form
         statusLabel.Text = "Sorted hosts by most open ports";
     }
 
+    // Searches the selected host/IP for a specific open port using binary search.
     private void SearchForPort()
     {
         string ip = searchIpTextBox.Text.Trim();
@@ -380,6 +412,7 @@ public class ScannerGui : Form
             return;
         }
 
+        // Binary search requires the ports to be sorted by port number first.
         List<PortRecord> sortedPorts = host.openPorts.OrderBy(port => port.port).ToList();
         int index = BinarySearchPort(sortedPorts, targetPort);
 
@@ -398,6 +431,7 @@ public class ScannerGui : Form
         }
     }
 
+    // Binary search implementation for finding a port in the sorted port list.
     private int BinarySearchPort(List<PortRecord> ports, int targetPort)
     {
         int low = 0;
@@ -405,6 +439,7 @@ public class ScannerGui : Form
 
         while (low <= high)
         {
+            // Safer midpoint calculation than (low + high) / 2.
             int mid = low + (high - low) / 2;
 
             if (ports[mid].port == targetPort)
@@ -419,12 +454,14 @@ public class ScannerGui : Form
         return -1;
     }
 
+    // Fills the calculated Open Ports column because it is not directly stored in JSON.
     private void HostsGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
     {
         if (hostsGrid.Columns[e.ColumnIndex].Name == "OpenPortCount" && e.RowIndex >= 0 && e.RowIndex < currentReport.hosts.Count)
             e.Value = currentReport.hosts[e.RowIndex].openPorts.Count;
     }
 
+    // Adds text to the log box safely, even when called from the scanner process thread.
     private void AppendLog(string text)
     {
         if (logBox.InvokeRequired)
@@ -436,6 +473,7 @@ public class ScannerGui : Form
         logBox.AppendText(text);
     }
 
+    // Enables or disables GUI controls depending on whether a scan is running.
     private void SetBusy(bool busy)
     {
         scanButton.Enabled = !busy;
@@ -446,6 +484,7 @@ public class ScannerGui : Form
         statusLabel.Text = busy ? "Scanner is running..." : "Ready";
     }
 
+    // Entry point for the GUI executable.
     [STAThread]
     public static void Main()
     {

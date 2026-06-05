@@ -14,10 +14,13 @@
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "iphlpapi.lib")
 
+// Scans ports 1-1024 on a single host.
+// The port range is split across threads to make scanning much faster.
 void Scanner::scanPorts(Host& host) {
     std::mutex portMutex;
     std::vector<std::thread> threads;
 
+    // Number of worker threads used for the port scan.
     const int threadcount = 64;
 
     int portsPerThread = 1024/threadcount;
@@ -27,6 +30,7 @@ void Scanner::scanPorts(Host& host) {
 
         int endPort = (t == threadcount - 1) ? 1024 : startPort + portsPerThread - 1;
 
+        // Each thread scans one section of the port range.
         threads.emplace_back(
             [&, startPort, endPort]() {
                 ServiceDetection servDetect;
@@ -35,11 +39,13 @@ void Scanner::scanPorts(Host& host) {
                     SocketClient sockClient;
                     PortInfo result = searchPort(host.ip, sockClient, port);
 
+                    // Only store open ports because closed ports are not useful in the final report.
                     if (result.state == PortInfo::PortState::OPEN) {
                         result.banner = servDetect.grabBanner(host.ip, port);
 
                         result.service = servDetect.detectService(result.banner, port);
 
+                        // Protect openPorts because multiple threads may add results at the same time.
                         std::lock_guard<std::mutex> lock(portMutex);
 
                         host.openPorts.push_back(result);
@@ -47,6 +53,7 @@ void Scanner::scanPorts(Host& host) {
                 }
             });
     }
+    // Wait for every worker thread to finish before returning.
     for (auto& t : threads) {
         if (t.joinable()) {
             t.join();
@@ -55,13 +62,16 @@ void Scanner::scanPorts(Host& host) {
 
 }
 
+// Uses SocketClient to scan one port and wraps the result in a PortInfo object.
 PortInfo Scanner::searchPort(std::string ip, SocketClient& sockClient, int port) {
     PortInfo::PortState state = sockClient.connectToPort(ip, port);
 
     return PortInfo(state, port);
 }
 
+// Pings one IP address to decide whether it should be added as an online host.
 bool Scanner::pingHost(const char* ipAddress) {
+    // Creates a Windows ICMP handle used to send the ping request.
     HANDLE hIcmp = IcmpCreateFile();
 
     if (hIcmp == INVALID_HANDLE_VALUE) {
@@ -74,6 +84,7 @@ bool Scanner::pingHost(const char* ipAddress) {
 
     void* relayBuffer = malloc(replySize);
 
+    // Sends a short ping with a low timeout so discovery does not take too long.
     DWORD result = IcmpSendEcho(
         hIcmp,
         inet_addr(ipAddress),
@@ -91,15 +102,19 @@ bool Scanner::pingHost(const char* ipAddress) {
     return (result > 0);
 }
 
+// Scans a subsection of the subnet, such as 192.168.56.1 to 192.168.56.50.
+// This method is run by multiple threads from discoverHostsThreaded.
 void Scanner::discoverRange(std::string subnet, int startIp, int endIp) {
     for (int currentIp = startIp; currentIp <= endIp; currentIp++)
     {
         std::string ip = subnet + std::to_string(currentIp);
 
+        // Only online hosts are stored in the results list.
         if (pingHost(ip.c_str())){
             Host host(ip, true);
 
             {
+                // Protect hosts because multiple discovery threads may add hosts at once.
                 std::lock_guard<std::mutex> lock(hostMutex);
                 hosts.push_back(host);
             }
@@ -110,10 +125,12 @@ void Scanner::discoverRange(std::string subnet, int startIp, int endIp) {
     }
 }
 
+// Splits the full subnet into chunks and scans those chunks at the same time.
 void Scanner::discoverHostsThreaded(std::string subnet) {
     const int firstIp = 1;
     const int lastIp = 255;
 
+    // Use the CPU thread count when possible for a reasonable default.
     unsigned int threadCount = std::thread::hardware_concurrency();
 
     if (threadCount == 0) {
@@ -127,6 +144,7 @@ void Scanner::discoverHostsThreaded(std::string subnet) {
 
     int start = firstIp;
 
+    // Create one worker thread per chunk of IP addresses.
     for (unsigned int i = 0; i < threadCount; i++) {
         int end;
 
@@ -136,6 +154,7 @@ void Scanner::discoverHostsThreaded(std::string subnet) {
             end = start + chunkSize - 1;
         }
 
+        // Each thread scans one section of the port range.
         threads.emplace_back(
             &Scanner::discoverRange,
             this,
@@ -154,14 +173,18 @@ void Scanner::discoverHostsThreaded(std::string subnet) {
     std::cout << "\nScan Complete.\n";
 }
 
+// Gives the main program editable access to the stored host list.
 std::vector<Host>& Scanner::getHost() {
     return hosts;
 }
 
-const std::vector<Host>& Scanner::getHost() const {
+const // Gives the main program editable access to the stored host list.
+std::vector<Host>& Scanner::getHost() const {
     return hosts;
 }
 
+// Starts quick sort on the host list.
+// Hosts with more open ports are placed earlier in the vector.
 void Scanner::sortResults() {
     if (hosts.empty())
         return;
@@ -169,6 +192,8 @@ void Scanner::sortResults() {
     quickSort(hosts, 0, hosts.size() - 1);
 }
 
+// Recursive quick sort implementation.
+// This meets both the sort algorithm and recursion algorithm requirements.
 void Scanner::quickSort(std::vector<Host>& arr, int low, int high) {
     if (low < high) {
         int pi = partition(arr, low, high);
@@ -178,6 +203,7 @@ void Scanner::quickSort(std::vector<Host>& arr, int low, int high) {
     }
 }
 
+// Partition step for quick sort. The pivot is the open port count of the last host.
 int Scanner::partition(std::vector<Host>& arr, int low, int high) {
     int pivot = arr[high].openPorts.size();
     int i = low - 1;
@@ -195,14 +221,14 @@ int Scanner::partition(std::vector<Host>& arr, int low, int high) {
     return i + 1;
 }
 
-// Helper function to sort a host's open ports by port number (ascending)
+// Sorts a host's open ports by port number so binary search can work correctly.
 void Scanner::sortPortsByNumber(Host& host) {
     std::sort(host.openPorts.begin(), host.openPorts.end(), [](const PortInfo& a, const PortInfo& b) {
         return a.port < b.port;
     });
 }
 
-// Binary Search implementation to find a specific port number
+// Binary search implementation to find a specific open port number.
 int Scanner::binarySearchPort(const Host& host, int targetPort) {
     int low = 0;
     int high = static_cast<int>(host.openPorts.size()) - 1;

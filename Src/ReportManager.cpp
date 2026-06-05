@@ -9,13 +9,17 @@
 
 using json = nlohmann::json;
 
+// Saves scan results to scan_results.json.
+// This gives the project file output and lets the GUI load the scan results.
 void ReportManager::saveToFile(const std::vector<Host>& hosts) {
 
+    // Root JSON object that stores every discovered host.
     json root;
     root["hosts"] = json::array();
 
     for (const auto& host : hosts)
     {
+        // Convert one Host object into a JSON object.
         json hostJson;
 
         hostJson["ip"] = host.ip;
@@ -25,6 +29,7 @@ void ReportManager::saveToFile(const std::vector<Host>& hosts) {
 
         for (const auto& port : host.openPorts)
         {
+            // Convert one open port into JSON data.
             json portJson;
 
             portJson["port"] = port.port;
@@ -52,6 +57,8 @@ void ReportManager::saveToFile(const std::vector<Host>& hosts) {
     std::cout << "Saved to " << fileName << '\n';
 }
 
+// Loads scan_results.json and rebuilds the vector of Host objects.
+// This gives the project file input and allows old scans to be viewed again.
 std::vector<Host> ReportManager::loadFromFile()
 {
     std::vector<Host> hosts;
@@ -64,6 +71,7 @@ std::vector<Host> ReportManager::loadFromFile()
         return hosts;
     }
 
+    // Parse the JSON file into a JSON object.
     json root;
     inFile >> root;
 
@@ -75,6 +83,7 @@ std::vector<Host> ReportManager::loadFromFile()
         std::string ip = hostJson["ip"];
         bool online = hostJson["online"];
 
+        // Recreate the Host object from the saved JSON values.
         Host host(ip, online);
 
         if (hostJson.contains("hostname"))
@@ -88,6 +97,7 @@ std::vector<Host> ReportManager::loadFromFile()
             {
                 int portNumber = portJson["port"];
 
+                // Recreate the PortInfo object from the saved JSON values.
                 PortInfo port(
                     stringToPortState(portJson["state"]),
                     portNumber
@@ -113,6 +123,7 @@ std::vector<Host> ReportManager::loadFromFile()
     return hosts;
 }
 
+// Converts the enum state into text so it can be stored in JSON.
 std::string ReportManager::portStateToString(PortInfo::PortState state){
     switch (state){
         case PortInfo::PortState::OPEN: return "OPEN";
@@ -123,6 +134,7 @@ std::string ReportManager::portStateToString(PortInfo::PortState state){
     }
 }
 
+// Converts text from JSON back into the matching enum value.
 PortInfo::PortState ReportManager::stringToPortState(const std::string& state)
 {
     if (state == "OPEN")

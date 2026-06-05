@@ -8,10 +8,13 @@
 #include "Host.h"
 #include "PortInfo.h"
 
+// Cleans up Winsock before the program exits.
+// This is required because WSAStartup is called at the beginning of main.
 void shutdownWinsock() {
     WSACleanup();
 }
 
+// Prints command-line help for the normal console mode and GUI scan mode.
 void printUsage() {
     std::cout << "NetworkScanner.exe usage:\n";
     std::cout << "  NetworkScanner.exe                         Starts the normal console menu\n";
@@ -20,6 +23,7 @@ void printUsage() {
     std::cout << "  NetworkScanner.exe --gui-scan 192.168.56.\n";
 }
 
+// Displays all currently stored hosts and their open ports in the console.
 void printNetworkInformation(const std::vector<Host>& hosts) {
     std::cout << "Host Name | IP | Online\n";
 
@@ -37,6 +41,8 @@ void printNetworkInformation(const std::vector<Host>& hosts) {
     }
 }
 
+// Runs the scanner without the console menu so the C# GUI can call this EXE.
+// The GUI reads the JSON report that this function saves.
 int runGuiScanMode(const std::string& subnet) {
     Scanner scanner;
     ReportManager reportManager;
@@ -59,14 +65,17 @@ int runGuiScanMode(const std::string& subnet) {
     return 0;
 }
 
+// Program entry point. Handles command-line mode first, then falls back to the menu.
 int main(int argc, char* argv[]) {
     WSADATA wsaData;
 
+    // Initializes Winsock so sockets and ICMP networking functions can be used.
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
         std::cerr << "Winsock initialization failed.\n";
         return 1;
     }
 
+    // If arguments were passed in, check whether the GUI is asking for a scan.
     if (argc > 1) {
         std::string mode = argv[1];
 
@@ -100,6 +109,7 @@ int main(int argc, char* argv[]) {
     int userIn;
     std::string subnet;
 
+    // Normal console menu used when the program is run directly by the user.
     while (true) {
         std::cout << "0: Exit\n";
         std::cout << "1: Scan Network\n";
@@ -123,12 +133,14 @@ int main(int argc, char* argv[]) {
                 std::cin >> subnet;
                 std::cout << "Starting scan. May take a while\n";
 
+                // Finds online hosts in the chosen subnet.
                 scanner.discoverHostsThreaded(subnet);
                 break;
 
             case 2:
                 std::cout << "Scanning ports 1-1024 on hosts. May take a while\n";
 
+                // Scans each discovered host for open ports.
                 for (Host& host : scanner.getHost()) {
                     scanner.scanPorts(host);
                 }
@@ -149,12 +161,14 @@ int main(int argc, char* argv[]) {
 
             case 5:
                 std::cout << "Loading from file\n";
+                // Loads saved scan data back into the scanner object.
                 scanner.getHost() = reportManager.loadFromFile();
                 std::cout << "Loaded from file\n";
                 break;
 
             case 6:
                 std::cout << "Sorting by most open ports\n";
+                // Uses recursive quick sort to order hosts by most open ports.
                 scanner.sortResults();
                 std::cout << "Sorted\n";
                 break;
@@ -173,6 +187,7 @@ int main(int argc, char* argv[]) {
                 std::cout << "Enter the port number you are looking for: ";
                 std::cin >> targetPort;
 
+                // Finds the host object that matches the user-provided IP address.
                 Host* targetHost = nullptr;
                 for (Host& host : scanner.getHost()) {
                     if (host.ip == searchIp) {
@@ -186,6 +201,7 @@ int main(int argc, char* argv[]) {
                     break;
                 }
 
+                // Binary search only works correctly after the ports are sorted.
                 scanner.sortPortsByNumber(*targetHost);
                 int index = scanner.binarySearchPort(*targetHost, targetPort);
 
