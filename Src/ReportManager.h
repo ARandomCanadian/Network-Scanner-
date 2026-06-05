@@ -14,5 +14,5 @@ class ReportManager{
         void saveToFile(const std::vector<Host>& hosts);
         std::vector<Host> loadFromFile();
         std::string portStateToString(PortInfo::PortState state);
-        PortInfo::PortState ReportManager::stringToPortState(const std::string& state);
+        PortInfo::PortState stringToPortState(const std::string& state);
 };

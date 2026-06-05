@@ -50,8 +50,65 @@ void ReportManager::saveToFile(const std::vector<Host>& hosts) {
     std::cout << "Saved to " << fileName << '\n';
 }
 
-std::vector<Host> ReportManager::loadFromFile() {
+std::vector<Host> ReportManager::loadFromFile()
+{
+    std::vector<Host> hosts;
 
+    std::ifstream inFile(fileName);
+
+    if (!inFile.is_open())
+    {
+        std::cerr << "Failed to open " << fileName << '\n';
+        return hosts;
+    }
+
+    json root;
+    inFile >> root;
+
+    if (!root.contains("hosts"))
+        return hosts;
+
+    for (const auto& hostJson : root["hosts"])
+    {
+        std::string ip = hostJson["ip"];
+        bool online = hostJson["online"];
+
+        Host host(ip, online);
+
+        if (hostJson.contains("hostname"))
+        {
+            host.hostname = hostJson["hostname"];
+        }
+
+        if (hostJson.contains("openPorts"))
+        {
+            for (const auto& portJson : hostJson["openPorts"])
+            {
+                int portNumber = portJson["port"];
+
+                PortInfo port(
+                    stringToPortState(portJson["state"]),
+                    portNumber
+                );
+
+                if (portJson.contains("service"))
+                {
+                    port.service = portJson["service"];
+                }
+
+                if (portJson.contains("banner"))
+                {
+                    port.banner = portJson["banner"];
+                }
+
+                host.openPorts.push_back(port);
+            }
+        }
+
+        hosts.push_back(host);
+    }
+
+    return hosts;
 }
 
 std::string ReportManager::portStateToString(PortInfo::PortState state){

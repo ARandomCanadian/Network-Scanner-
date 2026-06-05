@@ -30,6 +30,7 @@ int main() {
         std::cout << "2: Scan Ports\n";
         std::cout << "3: Print Network Information\n";
         std::cout << "4: Output To JSON\n";
+        std::cout << "5: Input From JSON\n";
 
         std::cin >> userIn;
 
@@ -79,6 +80,12 @@ int main() {
                 std::cout << "Outputting data to file\n";
                 reportManager.saveToFile(scanner.getHost());
                 std::cout << "Data outputted\n";
+                break;
+
+            case 5:
+                std::cout << "Loading from file\n";
+                scanner.getHost() = reportManager.loadFromFile();
+                std::cout << "Loaded from file\n";
                 break;
 
             default:
