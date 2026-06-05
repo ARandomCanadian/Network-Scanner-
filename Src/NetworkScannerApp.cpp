@@ -22,13 +22,14 @@ int main() {
     ReportManager reportManager;
 
     int userIn;
-    std::string subnet;
+    std::string subnet; 
 
     while (true) {
         std::cout << "0: Exit\n";
         std::cout << "1: Scan Network\n";
         std::cout << "2: Scan Ports\n";
         std::cout << "3: Print Network Information\n";
+        std::cout << "4: Output To JSON\n";
 
         std::cin >> userIn;
 
@@ -44,7 +45,6 @@ int main() {
                 std::cout << "Starting scan. May take a while\n";
 
                 scanner.discoverHostsThreaded(subnet);
-
                 break;
 
             case 2:
@@ -55,7 +55,6 @@ int main() {
                 }
 
                 std::cout << "Port Scan Complete\n";
-
                 break;
 
             case 3:
@@ -74,7 +73,12 @@ int main() {
                         }
                     }
                 }
-
+                break;
+            
+            case 4:
+                std::cout << "Outputting data to file\n";
+                reportManager.saveToFile(scanner.getHost());
+                std::cout << "Data outputted\n";
                 break;
 
             default:

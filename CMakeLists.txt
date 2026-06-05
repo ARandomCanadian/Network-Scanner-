@@ -5,7 +5,6 @@ project(NetworkScanner LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Collect all source files (Updated to match your capitalized 'Src' folder name)
 file(GLOB_RECURSE SOURCES
     Src/*.cpp
     Src/*.h
@@ -13,10 +12,24 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(NetworkScanner ${SOURCES})
 
-# Optional: warnings (good for security/cyber projects)
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     target_compile_options(NetworkScanner PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
-# Link both Winsock2 and the Windows IP Helper API (for ICMP pings)
-target_link_libraries(NetworkScanner ws2_32 iphlpapi)
+include(FetchContent)
+
+FetchContent_Declare(
+    json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.12.0
+)
+
+FetchContent_MakeAvailable(json)
+
+target_link_libraries(
+    NetworkScanner
+    PRIVATE
+        ws2_32
+        iphlpapi
+        nlohmann_json::nlohmann_json
+)
