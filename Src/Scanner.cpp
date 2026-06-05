@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <iphlpapi.h>
 #include <icmpapi.h>
+#include <algorithm>
 
 #include "Scanner.h"
 #include "Host.h"
@@ -191,4 +192,34 @@ int Scanner::partition(std::vector<Host>& arr, int low, int high) {
 
     std::swap(arr[i + 1], arr[high]);
     return i + 1;
+}
+
+// Helper function to sort a host's open ports by port number (ascending)
+void Scanner::sortPortsByNumber(Host& host) {
+    std::sort(host.openPorts.begin(), host.openPorts.end(), [](const PortInfo& a, const PortInfo& b) {
+        return a.port < b.port;
+    });
+}
+
+// Binary Search implementation to find a specific port number
+int Scanner::binarySearchPort(const Host& host, int targetPort) {
+    int low = 0;
+    int high = static_cast<int>(host.openPorts.size()) - 1;
+
+    while (low <= high) {
+        // Calculates the midpoint safely to avoid overflow
+        int mid = low + (high - low) / 2; 
+
+        if (host.openPorts[mid].port == targetPort) {
+            return mid; // Target found! Returns the index in the vector
+        }
+        
+        if (host.openPorts[mid].port < targetPort) {
+            low = mid + 1; // Search the right half
+        } else {
+            high = mid - 1; // Search the left half
+        }
+    }
+
+    return -1; // Port not found in the open ports list
 }

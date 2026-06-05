@@ -27,4 +27,6 @@ class Scanner {
         const std::vector<Host>& getHost() const;
         static void quickSort(std::vector<Host>& arr, int low, int high);
         static int partition(std::vector<Host>& arr, int low, int high);
+        void sortPortsByNumber(Host& host);
+        int binarySearchPort(const Host& host, int targetPort); 
 };

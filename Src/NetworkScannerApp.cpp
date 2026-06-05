@@ -32,6 +32,7 @@ int main() {
         std::cout << "4: Output To JSON\n";
         std::cout << "5: Input From JSON\n";
         std::cout << "6: Sort By Most Open Ports\n";
+        std::cout << "7: Binary Search for a Specific Port\n";
 
         std::cin >> userIn;
 
@@ -95,6 +96,52 @@ int main() {
                 std::cout << "Sorted\n";
                 break;
 
+            case 7: {
+                if (scanner.getHost().empty()) {
+                    std::cout << "No hosts scanned yet. Please scan the network and ports first.\n";
+                    break;
+                }
+            
+                std::string searchIp;
+                int targetPort;
+            
+                std::cout << "Enter the IP address of the host to search within: ";
+                std::cin >> searchIp;
+                std::cout << "Enter the port number you are looking for: ";
+                std::cin >> targetPort;
+            
+                // Find the host matching the entered IP address
+                Host* targetHost = nullptr;
+                for (Host& host : scanner.getHost()) {
+                    if (host.ip == searchIp) {
+                        targetHost = &host;
+                        break;
+                    }
+                }
+            
+                if (targetHost == nullptr) {
+                    std::cout << "Host with IP " << searchIp << " not found in results.\n";
+                    break;
+                }
+            
+                // 1. Sort the ports first (Required for Binary Search)
+                scanner.sortPortsByNumber(*targetHost);
+            
+                // 2. Execute Binary Search
+                int index = scanner.binarySearchPort(*targetHost, targetPort);
+            
+                // 3. Output results
+                if (index != -1) {
+                    const PortInfo& foundPort = targetHost->openPorts[index];
+                    std::cout << "\n[+] Port " << targetPort << " is OPEN on " << searchIp << "!\n";
+                    std::cout << "    Service: " << foundPort.service << "\n";
+                    std::cout << "    Banner:  " << (foundPort.banner.empty() ? "None" : foundPort.banner) << "\n\n";
+                } else {
+                    std::cout << "\n[-] Port " << targetPort << " is NOT open (or untracked) on " << searchIp << ".\n\n";
+                }
+                break;
+            }
+            
             default:
                 std::cout << "Invalid option\n";
                 break;
