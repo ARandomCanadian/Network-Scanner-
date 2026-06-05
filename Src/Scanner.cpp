@@ -4,6 +4,7 @@
 #include <iphlpapi.h>
 #include <icmpapi.h>
 #include <algorithm>
+#include <string>
 
 #include "Scanner.h"
 #include "Host.h"

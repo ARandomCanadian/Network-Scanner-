@@ -1,5 +1,5 @@
 #include <iostream>
-#include <winsock.h>
+#include <winsock2.h>
 
 #include "ServiceDetection.h"
 

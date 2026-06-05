@@ -12,6 +12,7 @@ using json = nlohmann::json;
 void ReportManager::saveToFile(const std::vector<Host>& hosts) {
 
     json root;
+    root["hosts"] = json::array();
 
     for (const auto& host : hosts)
     {
@@ -20,6 +21,7 @@ void ReportManager::saveToFile(const std::vector<Host>& hosts) {
         hostJson["ip"] = host.ip;
         hostJson["hostname"] = host.hostname;
         hostJson["online"] = host.online;
+        hostJson["openPorts"] = json::array();
 
         for (const auto& port : host.openPorts)
         {
