@@ -28,7 +28,7 @@ std::string ServiceDetection::grabBanner(const std::string& ip, int port){
     }
 
     // Prevent recv from waiting forever if the service does not send a banner.
-    DWORD timeout = 2000;
+    DWORD timeout = 100;
     setsockopt(
         sock,
         SOL_SOCKET,
@@ -56,9 +56,6 @@ std::string ServiceDetection::grabBanner(const std::string& ip, int port){
 // Detects the service name using either the banner text or a common port number.
 std::string ServiceDetection::detectService(const std::string banner, int port) {
     // If there is no banner, the port number fallback below may still identify it.
-    if (banner.empty())
-        return "Unknown";
-
     if (banner.find("SSH") != std::string::npos)
         return "SSH";
         

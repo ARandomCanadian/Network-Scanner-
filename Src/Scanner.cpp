@@ -5,6 +5,7 @@
 #include <icmpapi.h>
 #include <algorithm>
 #include <string>
+#include <chrono>
 
 #include "Scanner.h"
 #include "Host.h"
@@ -17,11 +18,13 @@
 // Scans ports 1-1024 on a single host.
 // The port range is split across threads to make scanning much faster.
 void Scanner::scanPorts(Host& host) {
+    auto scanStart = std::chrono::high_resolution_clock::now();
+
     std::mutex portMutex;
     std::vector<std::thread> threads;
 
     // Number of worker threads used for the port scan.
-    const int threadcount = 64;
+    const int threadcount = 128;
 
     int portsPerThread = 1024/threadcount;
 
@@ -60,6 +63,10 @@ void Scanner::scanPorts(Host& host) {
         }
     }
 
+    auto scanEnd = std::chrono::high_resolution_clock::now();
+    auto scanDuration = std::chrono::duration_cast<std::chrono::milliseconds>(scanEnd - scanStart);
+
+    std::cout << "Port scan for " << host.ip << " took " << scanDuration.count() << "ms\n";
 }
 
 // Uses SocketClient to scan one port and wraps the result in a PortInfo object.
